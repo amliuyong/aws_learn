@@ -1,0 +1,26 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+      "s3:PutObject"
+    ],
+    "Resource": [
+      "arn:aws:s3:::yongliu-s3-bucket/public/index/*",
+      "arn:aws:s3:::yongliu-s3-bucket/private/index/*"
+    ]
+  }, {
+    "Effect": "Allow",
+    "Action": [
+      "dynamodb:Query",
+      "dynamodb:GetRecords",
+      "dynamodb:GetShardIterator",
+      "dynamodb:DescribeStream",
+      "dynamodb:ListStreams"
+    ],
+    "Resource": [
+      "arn:aws:dynamodb:us-east-1:015887481462:table/yongliuMediaSharing",
+      "arn:aws:dynamodb:us-east-1:015887481462:table/yongliuMediaSharing/*"
+    ]
+  }]
+}

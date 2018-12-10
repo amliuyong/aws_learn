@@ -1,0 +1,23 @@
+
+#the following Resource element refers to only a bucket that is named the same as the value in the requesting user's department tag.
+"Resource": ["arn:aws:s3:::bucket/${aws:PrincipalTag/department}"]
+
+
+# the following policy example allows access to a resource only if the tag costCenter is attached to the resource.
+# The tag must also have a value of either 12345 or 67890. If the tag has no value, or has any other value, then the request fails.
+
+{
+  "Version": "2015-01-01",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*",
+      "Condition": {
+        "StringLike": {
+          "iam:ResourceTag/costCenter": [ "12345", "67890" ]
+        }
+      }
+    }
+  ]
+}

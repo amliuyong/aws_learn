@@ -1,0 +1,35 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ],
+    "Resource": "*"
+  }, {
+    "Effect": "Allow",
+    "Action": [
+      "s3:ListBucket"
+    ],
+    "Resource": [
+      "arn:aws:s3:::yongliu-s3-bucket"
+    ],
+    "Condition": {
+      "StringLike": {
+        "s3:prefix": [
+          "tmp/*"
+        ]
+      }
+    }
+  }, {
+    "Effect": "Allow",
+    "Action": [
+      "s3:DeleteObject"
+    ],
+    "Resource": [
+      "arn:aws:s3:::yongliu-s3-bucket/tmp/*"
+    ]
+  }]
+}

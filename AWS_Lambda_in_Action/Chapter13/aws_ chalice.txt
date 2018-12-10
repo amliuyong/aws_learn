@@ -1,0 +1,60 @@
+https://github.com/aws/chalice/
+
+$ pip install virtualenv
+$ virtualenv ~/.virtualenvs/chalice-demo
+$ source ~/.virtualenvs/chalice-demo/bin/activate
+
+$ pip install chalice
+
+brew install httpie
+pip install httpie
+
+pip install boto3
+echo 'boto3==1.3.1' >> requirements.txt
+
+chalice new-project greetingdOnDemand
+cd greetingdOnDemand
+chalice deploy
+
+Creating deployment package.
+Creating IAM role: greetingOnDemand-dev
+Creating lambda function: greetingOnDemand-dev
+Creating Rest API
+Resources deployed:
+  - Lambda ARN: arn:aws:lambda:us-east-1:015887481462:function:greetingOnDemand-dev
+  - Rest API URL: https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/
+
+http https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/
+
+echo '{"foo": "bar"}' | http PUT https://endpoint/api/objects/mykey
+
+http https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/introspect
+http POST https://endpoint/api/ states=WA states=CA --debug
+
+#If we use the --form argument, we can see the expected behavior of this view function because httpie sets the Content-Type header to application/x-www-form-urlencoded
+#content_type: 'application/x-www-form-urlencoded'
+
+http --form POST https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/formtest  states=WA states=CA --debug
+
+http https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/res_text
+
+http https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/gziptest
+
+curl -H "Accept:application/json;Content-Encoding:gzip"  https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/gziptest/
+
+http  https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/gziptest/   \
+Accept:application/json Content-Encoding:gzip --debug
+
+
+CLI loading the <projectdir>/.chalice/policy.json file and using that file as the policy for the IAM role. You can manually edit this file and specify --no-autogen-policy if you'd like to have full control over what IAM policy to associate with the IAM role.
+
+cd <project>
+chalice gen-policy > .chalice/policy-dev.json
+
+chalice deploy --no-autogen-policy
+
+edit .chalice/policy-dev.json
+
+http PUT https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/s3objects/AAAA abc=123
+
+http https://tov24cveae.execute-api.us-east-1.amazonaws.com/api/s3objects/AAAA

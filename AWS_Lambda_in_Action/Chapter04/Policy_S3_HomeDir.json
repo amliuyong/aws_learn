@@ -1,0 +1,61 @@
+
+#The following policy might be attached to a group.
+#It gives each of the users in the group full programmatic access to a user-specific object (their own "home directory") in Amazon S3.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": ["s3:ListBucket"],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::mybucket"],
+      "Condition": {"StringLike": {"s3:prefix": ["${aws:username}/*"]}}
+    },
+    {
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::mybucket/${aws:username}/*"]
+    }
+  ]
+}
+
+# https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html'
+# Amazon S3: Allows IAM Users Access to Their S3 Home Directory, Programmatically and In the Console
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::<BUCKET-NAME>",
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": [
+                        "",
+                        "home/",
+                        "home/${aws:username}/*"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::<BUCKET-NAME>/home/${aws:username}",
+                "arn:aws:s3:::<BUCKET-NAME>/home/${aws:username}/*"
+            ]
+        }
+    ]
+}

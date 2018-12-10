@@ -1,0 +1,50 @@
+{
+    "version": "0",
+    "id": "8a50bfef-33fd-2ea3-1056-02ad1eac7210",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.ec2",
+    "account": "XXXXXXXXXXX",
+    "time": "2017-11-30T09:51:25Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.05",
+        "userIdentity": {
+            "type": "IAMUser",
+            "principalId": "...",
+            "arn": "arn:aws:iam::XXXXXXXXXXXX:user/myuser",
+            "accountId": "XXXXXXXXXXXX",
+            "accessKeyId": "...",
+            "userName": "myuser",
+            "sessionContext": {
+                "attributes": {
+                    "mfaAuthenticated": "false",
+                    "creationDate": "2017-11-30T09:51:05Z"
+                }
+            },
+            "invokedBy": "signin.amazonaws.com"
+        },
+        "eventTime": "2017-11-30T09:51:25Z",
+        "eventSource": "ec2.amazonaws.com",
+        "eventName": "RunInstances",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "XXX.XXX.XXX.XXX",
+        "userAgent": "signin.amazonaws.com",
+        "requestParameters": {},
+        "responseElements": {
+            "requestId": "327f5231-c65a-468c-83a8-b00b7c949f78",
+            "reservationId": "r-0234df5d03e3ad6a5",
+            "ownerId": "XXXXXXXXXXXX",
+            "groupSet": {},
+            "instancesSet": {
+                "items": [{
+                    "instanceId": "i-06133867ab0f704e7",
+                    "imageId": "ami-55ef662f",
+                }]
+            }
+        },
+        "requestID": "327f5231-c65a-468c-83a8-b00b7c949f78",
+        "eventID": "134d35c6-6a76-49b9-9ff8-5a4130474b6f",
+        "eventType": "AwsApiCall"
+    }
+}

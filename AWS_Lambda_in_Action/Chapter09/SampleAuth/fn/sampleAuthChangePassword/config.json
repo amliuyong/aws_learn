@@ -1,0 +1,14 @@
+{
+  "AWS_ACCOUNT_ID": "015887481462",
+  "REGION": "us-east-1",
+  "BUCKET": "yongliu-s3-bucket",
+  "MAX_AGE": "10",
+  "DDB_TABLE": "yongliu_SampleAuthUsers",
+  "IDENTITY_POOL_NAME": "yongliuSampleAuth",
+  "DEVELOPER_PROVIDER_NAME": "login.amyongliu.com",
+  "EXTERNAL_NAME": "Sample Authentication",
+  "EMAIL_SOURCE": "23968560@qq.com",
+  "IDENTITY_POOL_ID": "us-east-1:f07a5c39-deed-439a-b92e-cfdfa3431d32",
+  "VERIFICATION_PAGE": "https://yongliu-s3-bucket.s3.amazonaws.com/verify.html",
+  "RESET_PAGE": "https://yongliu-s3-bucket.s3.amazonaws.com/resetPassword.html"
+}

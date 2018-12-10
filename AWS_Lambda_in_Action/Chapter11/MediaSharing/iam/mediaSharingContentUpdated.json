@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+      "s3:GetObject"
+    ],
+    "Resource": [
+      "arn:aws:s3:::yongliu-s3-bucket/public/content/*",
+      "arn:aws:s3:::yongliu-s3-bucket/private/content/*"
+    ]
+  }, {
+    "Effect": "Allow",
+    "Action": [
+      "s3:PutObject",
+      "s3:DeleteObject"
+    ],
+    "Resource": [
+      "arn:aws:s3:::yongliu-s3-bucket/public/thumbnail/*",
+      "arn:aws:s3:::yongliu-s3-bucket/private/thumbnail/*"
+    ]
+  }, {
+    "Effect": "Allow",
+    "Action": [
+      "dynamodb:PutItem",
+      "dynamodb:DeleteItem"
+    ],
+    "Resource": "arn:aws:dynamodb:us-east-1:015887481462:table/yongliuMediaSharing"
+  }]
+}

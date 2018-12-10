@@ -1,0 +1,16 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::yongliu-s3-bucket/*"
+      ],
+      "Sid": "c3e5560c9a624a01a72ba1567c2024cd"
+    }
+  ]
+}

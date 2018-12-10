@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Action": [
+      "dynamodb:GetItem"
+    ],
+    "Effect": "Allow",
+    "Resource": "arn:aws:dynamodb:us-east-1:015887481462:table/yongliu_SampleAuthUsers"
+  }, {
+    "Effect": "Allow",
+    "Action": [
+      "cognito-identity:GetOpenIdTokenForDeveloperIdentity"
+    ],
+    "Resource": "arn:aws:cognito-identity:us-east-1:015887481462:identitypool/us-east-1:f07a5c39-deed-439a-b92e-cfdfa3431d32"
+  }, {
+    "Sid": "",
+    "Resource": "*",
+    "Action": [
+      "logs:*"
+    ],
+    "Effect": "Allow"
+  }]
+}

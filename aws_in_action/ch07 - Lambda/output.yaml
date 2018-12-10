@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Adding an owner tag to EC2 instances automatically
+Resources:
+  EC2OwnerTagFunction:
+    Properties:
+      CodeUri: s3://yongliu-s3-bucket/8f22de107e7b73125bce3f283b5c60ea
+      Events:
+        CloudTrail:
+          Properties:
+            Pattern:
+              detail:
+                eventName:
+                - RunInstances
+              detail-type:
+              - AWS API Call via CloudTrail
+              source:
+              - aws.ec2
+          Type: CloudWatchEvent
+      Handler: lambda_function.lambda_handler
+      Policies:
+      - Statement:
+        - Action: ec2:CreateTags
+          Effect: Allow
+          Resource: '*'
+        Version: '2012-10-17'
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
