@@ -15,7 +15,8 @@ var s3 = new AWS.S3();
 function createBucketParams(next) {
   var params = {
     Bucket: process.env.BUCKET,
-    EncodingType: 'url'
+    EncodingType: 'url',
+    Prefix: "upload_video/"
   };
 
   next(null, params);

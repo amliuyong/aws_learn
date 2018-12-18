@@ -21,10 +21,15 @@ exports.handler = function(event, context, callback){
     var sourceKey = decodeURIComponent(key.replace(/\+/g, ' '));
 
     //remove the extension
-    var outputKey = sourceKey.split('.')[0];
+    var outputKey = sourceKey.substring(0, sourceKey.lastIndexOf("."));
+
+    console.log("key:" + key);
+    console.log("sourceKey:" + sourceKey);
+    console.log("outputKey:" + outputKey);
+
 
     var params = {
-        PipelineId: '1451470066051-jscnci',
+        PipelineId: '1544579526101-6is2g9',
         Input: {
             Key: sourceKey
         },
@@ -46,6 +51,9 @@ exports.handler = function(event, context, callback){
     elasticTranscoder.createJob(params, function(error, data){
         if (error){
             callback(error);
+        }else{
+            console.log(data);
+            console.log("All Done");
         }
     });
 };

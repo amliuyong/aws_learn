@@ -1,0 +1,180 @@
+<meta charset="utf-8"></meta>
+
+<title>My 24Hour Website</title>
+
+<base href="/"></base>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1">
+</meta>
+
+<!-- JQuery - required by Bootstrap -->
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+<!-- Bootstrap -->
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+  crossorigin="anonymous">
+</link>
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+  rel="stylesheet"
+  integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+  crossorigin="anonymous">
+</link>
+
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+  crossorigin="anonymous">
+</script>
+
+<link
+  href="style.css"
+  rel="stylesheet">
+</link>
+
+<div id="loading">
+  <img
+    alt="Loading spinner"
+    src="assets/loading.svg"/>
+</div>
+
+<div class="content">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a
+          class="navbar-brand"
+          href="#">
+          My 24Hour Website
+        </a>
+
+        <button
+          id="btn-home-view"
+          class="btn btn-primary btn-margin">
+          Home
+        </button>
+
+        <button
+          id="qsLoginBtn"
+          class="btn btn-primary btn-margin">
+          Log In
+        </button>
+
+        <button
+          id="qsLogoutBtn"
+          class="btn btn-primary btn-margin">
+          Log Out
+        </button>
+
+        <button
+          id="qsProfile"
+          class="btn btn-primary btn-margin">
+          Profile
+        </button>
+      <!--
+        <button
+          class="btn btn-info"
+          type="button"
+          data-toggle="modal"
+          data-target="#user-profile-modal">
+          Open Modalbutton
+        </button>
+       -->
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div id="login-view"></div>
+
+    <!-- home view -->
+
+    <div id="home-view">
+      <h4>This Home Page</h4>
+
+    </div>
+  </main>
+</div>
+
+<div
+  id="user-profile-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+
+        <h4 class="modal-title">User Profile Information (from Auth0 via Lambda)</h4>
+      </div>
+
+      <div class="modal-body">
+        <b>Raw JSON from Auth0:</b>
+
+        <pre id="user-profile-raw-json"></pre>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- /.modal-content -->
+  </div>
+
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+
+
+<div class="container" id="video-list-container">
+
+<span id="upload-video-button" class="btn btn-info btn-file">
+<span class="glyphicon glyphicon-plus"></span> <input id="upload" type="file" name="file">
+</span>
+
+<div class="progress" id="upload-progress">
+<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+</div>
+</div>
+
+  <div id="video-template" class="col-md-6 col">
+    <div class="video-card">
+      <video width="100%" height="100%" controls>
+        <source type="video/mp4"> Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div id="video-list" class="row">
+  </div>
+</div>
+
+
+<script src="node_modules/axios/dist/axios.min.js"></script>
+<script src="node_modules/auth0-js/build/auth0.js"></script>
+<script src="config.js"></script>
+<script src="js/video-controller.js"></script>
+<script src="js/upload-controller.js"></script>
+<script src="app.js"></script>

@@ -1,4 +1,4 @@
-/**
+/*
  * Created by Peter Sbarski
  * Serverless Architectures on AWS
  * http://book.acloud.guru/
@@ -10,6 +10,7 @@
 var AWS = require('aws-sdk');
 var async = require('async');
 var crypto = require('crypto');
+var util = require('util');
 
 var s3 = new AWS.S3();
 
@@ -38,14 +39,12 @@ function base64encode (value) {
 }
 
 function generateExpirationDate() {
-  var currentDate = new Date();
-  currentDate = currentDate.setDate(currentDate.getDate() + 1);
-  return new Date(currentDate).toISOString();
+  return new Date(new Date().getTime() + 3600 * 1000 * 0.5).toISOString();
 }
 
 function generatePolicyDocument(filename, next) {
   var directory = crypto.randomBytes(20).toString('hex');
-  var key = directory + '/' + filename;
+  var key = 'upload_video/' + directory + '/' + filename;
   var expiration = generateExpirationDate();
 
   var policy = {
@@ -86,6 +85,7 @@ exports.handler = function(event, context, callback){
       if (err) {
           callback(null, createErrorResponse(500, err));
       } else {
+
           var result =
           {
             signature: signature,
@@ -93,10 +93,13 @@ exports.handler = function(event, context, callback){
             access_key: process.env.ACCESS_KEY,
             upload_url: process.env.UPLOAD_URI + '/' + process.env.UPLOAD_BUCKET,
             key: key
-          }
+          };
+
+          console.log("policy:" + policy);
+          console.log("result:" + util.inspect(result));
 
           callback(null, createSuccessResponse(result));
       }
     }
-  )
+  );
 };

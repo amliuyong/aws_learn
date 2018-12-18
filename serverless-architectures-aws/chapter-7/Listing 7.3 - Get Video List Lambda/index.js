@@ -9,6 +9,7 @@
 
 var AWS = require('aws-sdk');
 var async = require('async');
+var util = require('util');
 
 var s3 = new AWS.S3();
 
@@ -34,7 +35,8 @@ function createSuccessResponse(result) {
 
 function createBucketParams(next) {
   var params = {
-    Bucket: process.env.BUCKET
+    Bucket: process.env.BUCKET,
+    Prefix: "upload_video/"
   };
 
   next(null, params);
@@ -51,6 +53,8 @@ function getVideosFromBucket(params, next) {
 }
 
 function createList(encoding, data, next) {
+  console.log("data: " + util.inspect(data));
+
   var files = [];
   for (var i = 0; i < data.Contents.length; i++) {
     var file = data.Contents[i];
@@ -66,6 +70,15 @@ function createList(encoding, data, next) {
       }
     }
 
+
+/*
+    { Key: 'upload_video/VPC-1080p.json',
+    LastModified: 2018-12-12T10:57:29.000Z,
+    ETag: '"efab788691217510dbcb4f6439af5c25"',
+    Size: 219,
+    StorageClass: 'STANDARD'
+    },
+*/
     files.push({
       'filename': file.Key,
       'eTag': file.ETag.replace(/"/g,""),
@@ -82,8 +95,15 @@ function createList(encoding, data, next) {
   next(null, result)
 }
 
+
+/*
+
+
+*/
 exports.handler = function(event, context, callback){
   var encoding = null;
+
+   console.log("event:" + util.inspect(event));
 
   if (event.queryStringParameters && event.queryStringParameters.encoding) {
     encoding = decodeURIComponent(event.queryStringParameters.encoding);

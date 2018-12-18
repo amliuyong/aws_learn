@@ -1,12 +1,12 @@
 {
-  "name": "custom-authorizer",
+  "name": "yongliuCustomeAuthorizer",
   "version": "1.0.0",
   "description": "This Lambda function is used to authorize requests",
   "main": "index.js",
   "scripts": {
     "test": "run-local-lambda --file index.js --event tests/event.json",
-    "deploy": "aws lambda update-function-code --function-name custom-authorizer --zip-file fileb://Lambda-Deployment.zip",
-    "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log"
+    "deploy": "aws lambda update-function-code --function-name yongliuCustomeAuthorizer --zip-file fileb://yongliuCustomeAuthorizer.zip",
+    "predeploy": "zip -r yongliuCustomeAuthorizer.zip * -x *.zip *.json *.log"
   },
   "dependencies": {
     "jsonwebtoken": "^5.7.0"

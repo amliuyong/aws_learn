@@ -1,0 +1,22 @@
+{
+  "name": "my24hourwebsite",
+  "version": "1.0.0",
+  "description": "Yong's Website for demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ws -p 8100"
+  },
+  "author": "Yong",
+  "license": "ISC",
+  "devDependencies": {
+    "local-web-server": "^2.6.0"
+  },
+  "dependencies": {
+    "auth0-js": "^9.8.2",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.14.6"
+  }
+}

@@ -34,7 +34,8 @@ function createSuccessResponse(result) {
 
 function createBucketParams(next) {
   var params = {
-    Bucket: process.env.BUCKET
+    Bucket: process.env.BUCKET,
+    Prefix: 'upload_video/'
   };
 
   next(null, params);
@@ -43,6 +44,7 @@ function createBucketParams(next) {
 function getVideosFromBucket(params, next) {
   s3.listObjects(params, function(err, data){
     if (err) {
+      console.log("getVideosFromBucket", err);
       next(err);
     } else {
       next(null, data);
@@ -55,6 +57,7 @@ function createList(encoding, data, next) {
 
   for (var i = 0; i < data.Contents.length; i++) {
     var file = data.Contents[i];
+    console.log("check " + file.Key);
 
     if (encoding) {
       var type = file.Key.substr(file.Key.lastIndexOf('-') + 1);
@@ -66,12 +69,20 @@ function createList(encoding, data, next) {
         continue;
       }
     }
+    console.log("add video: " + file.Key);
 
-    var params = {Bucket: process.env.BUCKET, Key: file.Key};
+
+    var params = {
+      Bucket: process.env.BUCKET,
+      Key: file.Key,
+      Expires: 1800  //URL valid for 30 minutes
+    };
+
     var url = s3.getSignedUrl('getObject', params);
 
     files.push({
-      'filename': url,
+      'filename': file.Key,
+      'url': url,
       'eTag': file.ETag.replace(/"/g,""),
       'size': file.Size
     });

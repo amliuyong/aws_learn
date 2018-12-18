@@ -1,17 +1,14 @@
 {
-  "name": "get-video-list",
+  "name": "yongLiuGetVideoListV2",
   "version": "1.0.0",
   "description": "This Lambda function will list videos available in an S3 bucket",
   "main": "index.js",
   "scripts": {
-    "test": "run-local-lambda --file index.js --event tests/event.json",
-    "create": "aws lambda create-function --function-name get-video-list --handler index.handler --memory-size 128 --runtime nodejs4.3 --role arn:aws:iam::038221756127:role/lambda-s3-execution-role --timeout 3 --publish --zip-file fileb://Lambda-Deployment.zip",
-    "deploy": "aws lambda update-function-code --function-name get-video-list --zip-file fileb://Lambda-Deployment.zip",
-    "precreate": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
-    "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log"
+    "deploy": "aws lambda update-function-code --function-name yongLiuGetVideoListV2 --zip-file fileb://yongLiuGetVideoListV2.zip",
+    "predeploy": "zip -r yongLiuGetVideoListV2.zip * -x *.zip *.json *.log"
   },
   "dependencies": {
-    "async": "^2.0.0",
+    "async": "^2.6.1",
     "aws-sdk": "^2.3.2",
     "log": "^1.4.0"
   },
