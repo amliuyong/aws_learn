@@ -1,8 +1,0 @@
-{
-  "options": {
-    "hostname":"bd54gbf734.execute-api.us-east-1.amazonaws.com",
-    "path":"/dev/videos",                                           
-    "method": "GET"
-  },
-  "data": ""
-}

@@ -1,5 +1,0 @@
-"Condition": {
- "ArnLike": {
-   "aws:SourceArn": "arn:aws:s3:*:*:yongliu-s3-test"
- }
-}
