@@ -1,0 +1,20 @@
+{
+  "name": "yongLiuGetVideoListV2",
+  "version": "1.0.0",
+  "description": "This Lambda function will list videos available in an S3 bucket",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "aws lambda update-function-code --function-name yongLiuGetVideoListV2 --zip-file fileb://yongLiuGetVideoListV2.zip",
+    "predeploy": "zip -r yongLiuGetVideoListV2.zip * -x *.zip *.json *.log"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "aws-sdk": "^2.3.2",
+    "log": "^1.4.0"
+  },
+  "author": "Peter Sbarski",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "run-local-lambda": "^1.1.0"
+  }
+}

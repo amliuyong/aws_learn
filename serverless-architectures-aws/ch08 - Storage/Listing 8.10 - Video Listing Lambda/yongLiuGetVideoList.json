@@ -1,0 +1,32 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "log",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowListBucketOfASpecificUserPrefix",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::yongliu-s3-test"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": [
+                        "upload_video/*"
+                    ]
+                }
+            }
+        }
+    ]
+}

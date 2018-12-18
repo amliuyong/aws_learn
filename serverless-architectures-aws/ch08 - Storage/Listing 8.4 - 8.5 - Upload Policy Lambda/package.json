@@ -1,0 +1,19 @@
+{
+  "name": "yongLiuGetUploadPolicy",
+  "version": "1.0.0",
+  "description": "This Lambda function will generate and return a policy to allow users to upload files to S3",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "aws lambda update-function-code --function-name yongLiuGetUploadPolicy --zip-file fileb://yongLiuGetUploadPolicy.zip",
+    "predeploy": "zip -r yongLiuGetUploadPolicy.zip * -x *.zip *.json *.log"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "crypto": "^1.0.1"
+  },
+  "author": "Peter Sbarski",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "run-local-lambda": "^1.1.0"
+  }
+}
